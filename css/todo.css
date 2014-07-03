@@ -1,0 +1,58 @@
+.boldText {
+	font-weight:bold;
+}
+
+.todoListContainer {
+	margin-top: 30px;
+}
+
+.todoListDiv {
+	background-color: #999B65;
+	margin-right: 20px;
+	display: inline-block;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	vertical-align: top;
+	width: 270px;
+}
+
+.addTodoLabel {
+	color: black;
+	cursor: pointer;
+	text-decoration: underline;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.savedTodoItem {
+	background-color: whitesmoke;
+	margin: 5px 5px 5px 5px;
+	width: 244px;
+	height: 30px;
+	padding-left: 5px;
+}
+
+textarea {
+	width: 244px;
+}
+
+.editTools {
+	padding-right: 5px;
+	float: right;
+	display: inline-block;
+}
+
+.editImage {
+	background-image: url("http://www.brown.edu/web/itunes/img/edit_pencil.png");
+	height: 20px;
+	width: 30px;
+	display: inline-block;
+}
+
+.cancelTodoImage {
+	background-image: url("https://dundalkcycling.membergrip.com/membergrip/img/button_cancel.png");
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	margin-left: 10px;
+}
