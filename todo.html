@@ -5,25 +5,12 @@
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			function openNewListBox(event,create) {
-				var createListDom = document.getElementById("createList"),
-					addListDom = document.getElementById("addListBtn");
-					console.log("hola");
-					if(create) {
-						addListDom.classList.add("hide");
-						createList.classList.remove("hide");
-					} else {
-						addListDom.classList.remove("hide");
-						createList.classList.add("hide");						
-					}
-			}
-
+		<script type="text/javascript" src="js/todo.js">
 		</script>
 		<div id="addListBtn" class="btn btn-primary" onclick="openNewListBox(event,true)">Add New List</div>
 		<div id="createList" class="hide">
 			<input type="textbox" style="height: 40px" placeholder="Enter the name of list"/>
-			<div class="btn btn-primary" onclick="createNewList()">Create</div>
+			<div class="btn btn-primary" onclick="createNewList(event)">Create</div>
 			<div class="btn" onclick="openNewListBox(event,false)">Cancel</div>
 		</div>
 		<div class="hide">
