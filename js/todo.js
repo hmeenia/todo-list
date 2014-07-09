@@ -15,6 +15,22 @@ function openNewListBox(event,create) {
 		document.getElementById("listName").value = "";
 }
 
+
+function createDom(type, classArray, inner) {
+	var dom = document.createElement(type);
+	if(classArray) {
+		classArray.forEach(function(elem) {
+			dom.classList.add(elem);
+		});
+	}
+
+	if(inner) {
+		dom.innerHTML = inner;
+	}
+
+	return dom;
+}
+
 function createAddTODOtextBox(dom) {
 	var textArea,
 	addButton,
@@ -29,25 +45,19 @@ function createAddTODOtextBox(dom) {
 
 	textArea = document.createElement("textarea");
 	
-	addButton = document.createElement("div");
-	addButton.classList.add("btn");
-	addButton.classList.add("btn-primary");
-	addButton.innerHTML = "Add";
+	addButton = createDom("div",["btn","btn-primary"],"Add");
 
 	addButton.addEventListener('click', function () {
-		newTodoDiv = document.createElement("div");
-		newTodoDiv.classList.add("savedTodoItem");
-		newTodoDiv.innerHTML = "<span class='todoValue'>" + textArea.value + "</span>";
+		newTodoDiv = createDom("div", ["savedTodoItem"]);
+		newTodoDiv.appendChild(createDom("span", ["todoValue"], textArea.value));
+		
 		tempTodoDiv.remove();
 
-		toolDiv = document.createElement("div");
-		toolDiv.classList.add("editTools");
+		toolDiv = createDom("div", ["editTools"]);
 
-		editImage = document.createElement("div");
-		editImage.classList.add("editImage");
+		editImage = createDom("div", ["editImage"]);
 
-		cancelTodoImage = document.createElement("div");
-		cancelTodoImage.classList.add("cancelTodoImage");
+		cancelTodoImage = createDom("div", ["cancelTodoImage"]);
 
 		toolDiv.appendChild(editImage);
 		toolDiv.appendChild(cancelTodoImage);
@@ -59,14 +69,11 @@ function createAddTODOtextBox(dom) {
 		createAddTODOtextBox(dom);
 	});
 
-	cancelButton = document.createElement("div");
-	cancelButton.classList.add("btn");
-	cancelButton.innerHTML = "Cancel";
+	cancelButton = createDom("div", ["btn"], "Cancel");
 
 	cancelButton.addEventListener('click', function (event) {
 		tempTodoDiv.remove();
 	});
-
 
 	tempTodoDiv.appendChild(textArea);
 	tempTodoDiv.appendChild(document.createElement("br"));
@@ -79,24 +86,17 @@ function createAddTODOtextBox(dom) {
 
 function createNewListDom(name) {
 	var container = document.getElementById("todoListContainer"),
-	div = document.createElement("div"),
-	addListEntry = document.createElement("div"),
-	deleteListEntry = document.createElement("div");
+	div = createDom("div", ["todoListDiv"], "<strong>"+name+"</strong><br>"),
+	addListEntry = createDom("div",["addTodoLabel"],"Add a TODO"),
+	deleteListEntry = createDom("div", ["addTodoLabel"], "Delete the List");
 
-	div.classList.add("todoListDiv");
-	div.innerHTML = "<strong>"+name+"</strong><br>";
-
-	addListEntry.classList.add("addTodoLabel");
-	addListEntry.innerHTML = "Add a TODO";
 	addListEntry.addEventListener('click', function (event) {
 		createAddTODOtextBox(event.target.parentElement);
 	});
 
-	deleteListEntry.classList.add("addTodoLabel");
-	deleteListEntry.innerHTML = "Delete the List";
 	deleteListEntry.addEventListener('click', function (event) {
 		event.target.parentElement.remove();
-	});	
+	});
 	
 	div.appendChild(addListEntry);
 	div.appendChild(deleteListEntry);
