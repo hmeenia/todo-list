@@ -1,4 +1,44 @@
-var index=0;
+function todo (dom){
+	this.parentDom = dom;
+
+	function editTodo () {
+
+	}
+
+	function deleteTodo () {
+
+	}
+}
+
+function todoList (listName) {
+	var dom;
+	createNewListDom (listName);
+	
+	function createNewListDom(name) {
+		var container = document.getElementById("todoListContainer"),
+		div = createDom("div", ["todoListDiv"], "<strong>"+name+"</strong><br>"),
+		addListEntry = createDom("div",["addTodoLabel"],"Add a TODO"),
+		deleteListEntry = createDom("div", ["addTodoLabel"], "Delete the List");
+
+		addListEntry.addEventListener('click', function (event) {
+			createAddTODOtextBox(event.target.parentElement);
+		});
+		
+		div.appendChild(addListEntry);
+		div.appendChild(deleteListEntry);
+
+		container.appendChild(div);
+
+		dom = div;
+		deleteListEntry.addEventListener('click', function() {
+			deleteList();
+		});
+	}
+
+	function deleteList () {
+		dom.remove();
+	}
+}
 
 function openNewListBox(event,create) {
 	var createListDom = document.getElementById("createList"),
@@ -83,31 +123,9 @@ function createAddTODOtextBox(dom) {
 	dom.appendChild(tempTodoDiv);
 }
 
-
-function createNewListDom(name) {
-	var container = document.getElementById("todoListContainer"),
-	div = createDom("div", ["todoListDiv"], "<strong>"+name+"</strong><br>"),
-	addListEntry = createDom("div",["addTodoLabel"],"Add a TODO"),
-	deleteListEntry = createDom("div", ["addTodoLabel"], "Delete the List");
-
-	addListEntry.addEventListener('click', function (event) {
-		createAddTODOtextBox(event.target.parentElement);
-	});
-
-	deleteListEntry.addEventListener('click', function (event) {
-		event.target.parentElement.remove();
-	});
-	
-	div.appendChild(addListEntry);
-	div.appendChild(deleteListEntry);
-
-	container.appendChild(div);
-
-}
-
 function createNewList(event, name) {
 	var dom;
 	openNewListBox(event,false);
 	console.log(name);
-	dom = createNewListDom(name);
+	var newList = new todoList (name);
 }
